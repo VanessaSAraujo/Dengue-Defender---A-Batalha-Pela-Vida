@@ -41,4 +41,6 @@ func _fixed_process(delta: float) -> void:
 
 func _on_anim_animation_finished(anim_name: StringName) -> void:
 	if anim_name == "hurt":
+		Globals.score += 100
 		queue_free()
+		Globals.score += 100
