@@ -123,10 +123,10 @@ tracks/1/path = NodePath("texture:hframes")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.2),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [1, 1]
+"values": [1]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -199,8 +199,8 @@ collision_mask = 2
 script = ExtResource("1_avdlb")
 
 [node name="texture" type="Sprite2D" parent="."]
-position = Vector2(0.331327, -8)
-scale = Vector2(0.186242, 0.18254)
+position = Vector2(-1.52588e-05, -8)
+scale = Vector2(0.18254, 0.18254)
 texture = ExtResource("1_500pf")
 hframes = 2
 
@@ -215,7 +215,7 @@ libraries = {
 autoplay = "fly"
 speed_scale = 1.528
 
-[node name="wall_detector" type="RayCast2D" parent="."]
+[node name="RayCast2D" type="RayCast2D" parent="."]
 position = Vector2(-2, -7)
 scale = Vector2(1, 4)
 target_position = Vector2(-15, 0)

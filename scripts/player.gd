@@ -8,12 +8,13 @@ const JUMP_FORCE = -400.0
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var is_jumping := false 
 var is_hurted := false
-var player_life := 3
 var knockback_vector := Vector2.ZERO
 var direction
 
 @onready var animation :=$animation as AnimatedSprite2D
 @onready var remote_transform := $remote as RemoteTransform2D
+
+signal player_has_died()
 
 
 func _physics_process(delta):
@@ -47,29 +48,29 @@ func _physics_process(delta):
 
 
 func _on_hurtbox_body_entered(body):
-	
-	if player_life < 0:
-		queue_free()
-	else:
-		if $ray_right.is_colliding():
-			take_damage(Vector2(-200,-200))
-		elif $ray_right2.is_colliding():
-			take_damage(Vector2(-200,-200))
-		elif $ray_right3.is_colliding():
-			take_damage(Vector2(-200,-200))
-		elif $ray_left.is_colliding():
-			take_damage(Vector2(200,-200))
-		elif $ray_left2.is_colliding():
-			take_damage(Vector2(200,-200))
-		elif $ray_left3.is_colliding():
-			take_damage(Vector2(200,-200))
+	if $ray_right.is_colliding():
+		take_damage(Vector2(-200,-200))
+	elif $ray_right2.is_colliding():
+		take_damage(Vector2(-200,-200))
+	elif $ray_right3.is_colliding():
+		take_damage(Vector2(-200,-200))
+	elif $ray_left.is_colliding():
+		take_damage(Vector2(200,-200))
+	elif $ray_left2.is_colliding():
+		take_damage(Vector2(200,-200))
+	elif $ray_left3.is_colliding():
+		take_damage(Vector2(200,-200))
 
 func follow_camera(camera):
 	var camera_path = camera.get_path()
 	remote_transform.remote_path = camera_path
 #
 func take_damage(knockback_force : = Vector2.ZERO, duration := 0.25):
-	player_life -= 1
+	if Globals.player_life > 0:
+		Globals.player_life -= 1
+	else:
+		queue_free()
+		emit_signal("player_has_died")
 	
 	if knockback_force != Vector2.ZERO:
 		knockback_vector = knockback_force
