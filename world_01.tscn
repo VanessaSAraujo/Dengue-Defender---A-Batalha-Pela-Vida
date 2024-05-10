@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://bjmm8eo1jjxux"]
+[gd_scene load_steps=31 format=3 uid="uid://bjmm8eo1jjxux"]
 
 [ext_resource type="Script" path="res://scripts/world_01.gd" id="1_4l18v"]
 [ext_resource type="Texture2D" uid="uid://chg5nge3pbgc2" path="res://Assets/World/terreno_background.png" id="1_8x71d"]
@@ -20,6 +20,7 @@
 [ext_resource type="Texture2D" uid="uid://brvwdejy3tt8r" path="res://Assets/Itens/Moedas_1/4.png" id="17_6rdqa"]
 [ext_resource type="FontFile" uid="uid://dd2t7wbv1yr28" path="res://Assets/fonts/RevMiniPixel.ttf" id="18_7t7kc"]
 [ext_resource type="Texture2D" uid="uid://kdtm2iudiqv7" path="res://Assets/Itens/Life/life.png" id="19_ux1wt"]
+[ext_resource type="PackedScene" uid="uid://j2456dijiqc" path="res://prefabs/pause_menu.tscn" id="21_0rxbh"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_t6quf"]
 texture = ExtResource("1_y2gsy")
@@ -25627,5 +25628,7 @@ theme_override_constants/outline_size = 4
 theme_override_fonts/font = ExtResource("18_7t7kc")
 text = "03"
 vertical_alignment = 1
+
+[node name="pause_menu" parent="." instance=ExtResource("21_0rxbh")]
 
 [connection signal="timeout" from="HUD/control/clock_timer" to="HUD/control" method="_on_clock_timer_timeout"]
