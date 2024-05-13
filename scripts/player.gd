@@ -10,6 +10,7 @@ var is_jumping := false
 var is_hurted := false
 var knockback_vector := Vector2.ZERO
 var direction
+var is_shooting := false
 
 @onready var animation :=$animation as AnimatedSprite2D
 @onready var remote_transform := $remote as RemoteTransform2D
@@ -29,6 +30,12 @@ func _physics_process(delta):
 		is_jumping = true
 	elif is_on_floor():
 		is_jumping = false
+		
+		
+	if Input.is_action_pressed("shoot"):
+		is_shooting = true
+	else:
+		is_shooting = false
 
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
@@ -87,10 +94,14 @@ func take_damage(knockback_force : = Vector2.ZERO, duration := 0.25):
 func _set_state():
 	var state = "idle"
 	
-	if !is_on_floor():
+	if !is_on_floor() and !is_shooting:
 		state = "jump"
-	elif direction != 0:
+	elif direction != 0 and !is_shooting:
 		state = "run"
+	elif !direction and is_shooting:
+		state = "shoot"
+	elif is_shooting or direction:
+		state = "run_shoot"
 	
 	if is_hurted:
 		state = "hurt"
