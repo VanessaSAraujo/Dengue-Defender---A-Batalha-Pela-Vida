@@ -186,35 +186,41 @@ position = Vector2(6, -28)
 scale = Vector2(1, 9)
 target_position = Vector2(13, 0.111111)
 collision_mask = 4
+hit_from_inside = true
 
 [node name="ray_right2" type="RayCast2D" parent="."]
 position = Vector2(6, -28)
 scale = Vector2(1, 9)
 target_position = Vector2(10, -2)
 collision_mask = 4
+hit_from_inside = true
 
 [node name="ray_right3" type="RayCast2D" parent="."]
 position = Vector2(6, -28)
 scale = Vector2(1, 9)
 target_position = Vector2(11, 1.55555)
 collision_mask = 4
+hit_from_inside = true
 
 [node name="ray_left" type="RayCast2D" parent="."]
 position = Vector2(-6, -27)
 scale = Vector2(1, 9)
 target_position = Vector2(-14, -0.222225)
 collision_mask = 4
+hit_from_inside = true
 
 [node name="ray_left2" type="RayCast2D" parent="."]
 position = Vector2(-6, -27)
 scale = Vector2(1, 9)
 target_position = Vector2(-13, -1.77778)
 collision_mask = 4
+hit_from_inside = true
 
 [node name="ray_left3" type="RayCast2D" parent="."]
 position = Vector2(-6, -27)
 scale = Vector2(1, 9)
 target_position = Vector2(-13, 1.22222)
 collision_mask = 4
+hit_from_inside = true
 
 [connection signal="body_entered" from="hurtbox" to="." method="_on_hurtbox_body_entered"]
