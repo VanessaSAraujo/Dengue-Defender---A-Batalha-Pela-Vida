@@ -25412,7 +25412,7 @@ layer_1/tile_data = PackedInt32Array(786432, 1376256, 3, 851968, 1376256, 4, 917
 position = Vector2(930, 260)
 
 [node name="enemy12" parent="enemies" instance=ExtResource("9_prduv")]
-position = Vector2(477, 259)
+position = Vector2(473, 266)
 
 [node name="enemy2" parent="enemies" instance=ExtResource("9_prduv")]
 position = Vector2(983, 275)
@@ -25497,6 +25497,13 @@ next_level = "res://mercado.tscn"
 
 [node name="player" parent="." instance=ExtResource("3_hylxh")]
 position = Vector2(14, 304)
+
+[node name="bullet_position" type="Marker2D" parent="player"]
+position = Vector2(16, -39)
+
+[node name="shoot_cooldown" type="Timer" parent="player"]
+wait_time = 0.1
+one_shot = true
 
 [node name="camera" type="Camera2D" parent="."]
 position = Vector2(0, 14)
@@ -25665,6 +25672,10 @@ material = SubResource("ShaderMaterial_fe651")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 1.0
+offset_top = -15.0
+offset_right = 1.0
+offset_bottom = -15.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)

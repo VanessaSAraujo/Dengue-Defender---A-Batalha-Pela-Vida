@@ -3,6 +3,7 @@ extends CharacterBody2D
 
 const SPEED = 300.0
 const JUMP_FORCE = -400.0
+const BULLET_SCENE = preload("res://prefabs/bullet.tscn")
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
@@ -14,6 +15,10 @@ var is_shooting := false
 
 @onready var animation :=$animation as AnimatedSprite2D
 @onready var remote_transform := $remote as RemoteTransform2D
+@onready var bullet_position = $bullet_position
+@onready var shoot_cooldown = $shoot_cooldown
+
+
 
 signal player_has_died()
 
@@ -34,12 +39,23 @@ func _physics_process(delta):
 		
 	if Input.is_action_pressed("shoot"):
 		is_shooting = true
+		if shoot_cooldown.is_stopped():
+			shoot_bullet()
 	else:
 		is_shooting = false
 
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	direction = Input.get_axis("ui_left", "ui_right")
+	
+	if Input.is_action_pressed("ui_left"):
+		if sign(bullet_position.position.x) == 1:
+			bullet_position.position.x *= -1
+			
+	if Input.is_action_pressed("ui_right"):
+		if sign(bullet_position.position.x) == -1:
+			bullet_position.position.x *= -1
+		
 	
 	if direction != 0:
 		velocity.x = direction * SPEED
@@ -109,3 +125,14 @@ func _set_state():
 	if animation.name != state:
 		animation.play(state)
 
+func shoot_bullet():
+	var bullet_instance = BULLET_SCENE.instantiate()
+	
+	if sign(bullet_position.position.x) == 1:
+		bullet_instance.set_direction(1)
+	else:
+		bullet_instance.set_direction(-1)
+		
+	add_sibling(bullet_instance)
+	bullet_instance.global_position = bullet_position.global_position
+	shoot_cooldown.start()
