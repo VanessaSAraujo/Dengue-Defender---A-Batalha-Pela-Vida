@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://bjmm8eo1jjxux"]
+[gd_scene load_steps=37 format=3 uid="uid://bjmm8eo1jjxux"]
 
 [ext_resource type="Script" path="res://scripts/world_01.gd" id="1_4l18v"]
 [ext_resource type="Texture2D" uid="uid://b7fgbpmxka8un" path="res://Assets/World/Spritesheet.png" id="1_i8k3e"]
@@ -21,6 +21,7 @@
 [ext_resource type="FontFile" uid="uid://dd2t7wbv1yr28" path="res://Assets/fonts/RevMiniPixel.ttf" id="18_7t7kc"]
 [ext_resource type="Texture2D" uid="uid://kdtm2iudiqv7" path="res://Assets/Itens/Life/life.png" id="19_ux1wt"]
 [ext_resource type="PackedScene" uid="uid://j2456dijiqc" path="res://prefabs/pause_menu.tscn" id="21_0rxbh"]
+[ext_resource type="Texture2D" uid="uid://caykvgppweat8" path="res://Assets/Itens/Repelente/repelente.png" id="21_xk27m"]
 [ext_resource type="Shader" path="res://shaders/transition.gdshader" id="22_5i4mh"]
 [ext_resource type="Script" path="res://scripts/transition.gd" id="22_k0x4y"]
 [ext_resource type="Script" path="res://scripts/color_rect.gd" id="23_lcewg"]
@@ -25660,6 +25661,37 @@ theme_override_constants/outline_size = 8
 theme_override_fonts/font = ExtResource("18_7t7kc")
 theme_override_font_sizes/font_size = 24
 text = "03"
+vertical_alignment = 1
+
+[node name="spray_container" type="HBoxContainer" parent="HUD/control/container"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+
+[node name="spray_icon" type="TextureRect" parent="HUD/control/container/spray_container"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+texture = ExtResource("21_xk27m")
+
+[node name="spray_separator" type="Label" parent="HUD/control/container/spray_container"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("18_7t7kc")
+theme_override_font_sizes/font_size = 24
+text = "X"
+vertical_alignment = 1
+
+[node name="spray_counter" type="Label" parent="HUD/control/container/spray_container"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("18_7t7kc")
+theme_override_font_sizes/font_size = 24
+text = "01"
 vertical_alignment = 1
 
 [node name="pause_menu" parent="." instance=ExtResource("21_0rxbh")]

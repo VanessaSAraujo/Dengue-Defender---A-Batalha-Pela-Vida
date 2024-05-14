@@ -289,12 +289,10 @@ animation = &"repelente"
 autoplay = "idle"
 
 [node name="collision" type="CollisionShape2D" parent="."]
-visible = false
 position = Vector2(0, -26)
 shape = SubResource("RectangleShape2D_ojml7")
 
 [node name="hurtbox" type="Area2D" parent="."]
-visible = false
 collision_layer = 0
 collision_mask = 4
 
@@ -306,7 +304,6 @@ debug_color = Color(0.62037, 0.35395, 1, 0.42)
 [node name="remote" type="RemoteTransform2D" parent="."]
 
 [node name="ray_right" type="RayCast2D" parent="."]
-visible = false
 position = Vector2(6, -28)
 scale = Vector2(1, 9)
 target_position = Vector2(13, 0.111111)
@@ -314,7 +311,6 @@ collision_mask = 4
 hit_from_inside = true
 
 [node name="ray_right2" type="RayCast2D" parent="."]
-visible = false
 position = Vector2(6, -28)
 scale = Vector2(1, 9)
 target_position = Vector2(10, -2)
@@ -322,7 +318,6 @@ collision_mask = 4
 hit_from_inside = true
 
 [node name="ray_right3" type="RayCast2D" parent="."]
-visible = false
 position = Vector2(6, -28)
 scale = Vector2(1, 9)
 target_position = Vector2(11, 1.55555)
@@ -330,7 +325,6 @@ collision_mask = 4
 hit_from_inside = true
 
 [node name="ray_left" type="RayCast2D" parent="."]
-visible = false
 position = Vector2(-6, -27)
 scale = Vector2(1, 9)
 target_position = Vector2(-14, -0.222225)
@@ -338,7 +332,6 @@ collision_mask = 4
 hit_from_inside = true
 
 [node name="ray_left2" type="RayCast2D" parent="."]
-visible = false
 position = Vector2(-6, -27)
 scale = Vector2(1, 9)
 target_position = Vector2(-13, -1.77778)
@@ -346,7 +339,6 @@ collision_mask = 4
 hit_from_inside = true
 
 [node name="ray_left3" type="RayCast2D" parent="."]
-visible = false
 position = Vector2(-6, -27)
 scale = Vector2(1, 9)
 target_position = Vector2(-13, 1.22222)

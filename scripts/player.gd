@@ -55,8 +55,7 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed("repelente"):
 		if Globals.repelente > 0 and Globals.player_life < 3:
 			is_repelente = true
-			Globals.player_life += 1
-			Globals.repelente -= 1
+			
 		
 	
 	# Get the input direction and handle the movement/deceleration.
@@ -135,6 +134,7 @@ func _set_state():
 		state = "run_shoot"
 	elif !direction and is_repelente:
 		state = "repelente"
+		
 	
 	if is_hurted:
 		state = "hurt"
@@ -158,3 +158,5 @@ func shoot_bullet():
 
 func _on_animation_animation_finished():
 	is_repelente = false
+	Globals.player_life += 1
+	Globals.repelente -= 1

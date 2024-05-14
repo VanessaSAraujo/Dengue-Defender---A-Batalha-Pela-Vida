@@ -5,6 +5,9 @@ extends Control
 @onready var score_counter = $container/score_container/score_counter as Label
 @onready var life_counter = $container/life_container/life_counter as Label
 @onready var clock_timer = $clock_timer as Timer
+@onready var spray_counter = $container/spray_container/spray_counter as Label
+
+
 
 var minutes = 0
 var seconds = 0
@@ -18,6 +21,7 @@ func _ready():
 	coins_counter.text = str("%04d" % Globals.coins)
 	score_counter.text = str("%06d" % Globals.score)
 	life_counter.text = str("%02d" % Globals.player_life)
+	spray_counter.text = str("%02d" % Globals.repelente)
 	timer_counter.text = str("%02d" % default_minutes) + ":" + str("%02d" % default_seconds)
 	reset_clock_timer()
 
@@ -26,6 +30,7 @@ func _process(delta):
 	coins_counter.text = str("%04d" % Globals.coins)
 	score_counter.text = str("%06d" % Globals.score)
 	life_counter.text = str("%02d" % Globals.player_life)
+	spray_counter.text = str("%02d" % Globals.repelente)
 	
 	if minutes == 0 and seconds == 0:
 		emit_signal("time_is_up")
