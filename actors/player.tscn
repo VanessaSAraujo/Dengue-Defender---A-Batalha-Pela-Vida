@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=3 uid="uid://usadl1sdgmbn"]
+[gd_scene load_steps=45 format=3 uid="uid://usadl1sdgmbn"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_u8eem"]
 [ext_resource type="Texture2D" uid="uid://ceggibk1660cj" path="res://Assets/player/hurt/1.png" id="2_25cbl"]
@@ -22,6 +22,8 @@
 [ext_resource type="Texture2D" uid="uid://luttqyxkhvab" path="res://Assets/player/run-shoot/15.png" id="20_wlg2g"]
 [ext_resource type="Texture2D" uid="uid://c1x6cwvypjffw" path="res://Assets/player/run-shoot/16.png" id="21_5lwxd"]
 [ext_resource type="Texture2D" uid="uid://ckakfygonndlt" path="res://Assets/player/atirando-inseticida/2.png" id="22_1om5f"]
+[ext_resource type="AudioStream" uid="uid://yrpwqtfaw4hq" path="res://sounds/jump_sfx.wav" id="23_0agfb"]
+[ext_resource type="AudioStream" uid="uid://bhrey0hxs6dof" path="res://sounds/shot.wav" id="24_jiyy3"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_redmo"]
 atlas = ExtResource("3_waknx")
@@ -246,9 +248,8 @@ script = ExtResource("1_u8eem")
 position = Vector2(0.999999, -19.5)
 scale = Vector2(0.872727, 0.944445)
 sprite_frames = SubResource("SpriteFrames_lxfek")
-animation = &"shoot"
+animation = &"hurt"
 autoplay = "idle"
-frame_progress = 0.116805
 
 [node name="collision" type="CollisionShape2D" parent="."]
 position = Vector2(0, -26)
@@ -306,5 +307,13 @@ scale = Vector2(1, 9)
 target_position = Vector2(-13, 1.22222)
 collision_mask = 4
 hit_from_inside = true
+
+[node name="jump_sfx" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("23_0agfb")
+volume_db = 1.0
+
+[node name="shot_sfx" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("24_jiyy3")
+volume_db = -12.0
 
 [connection signal="body_entered" from="hurtbox" to="." method="_on_hurtbox_body_entered"]

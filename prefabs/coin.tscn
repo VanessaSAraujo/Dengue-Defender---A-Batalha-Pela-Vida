@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://clwj1ixwlhacy"]
+[gd_scene load_steps=20 format=3 uid="uid://clwj1ixwlhacy"]
 
 [ext_resource type="Texture2D" uid="uid://c0y7oqn3y0ho5" path="res://Assets/Itens/Moedas_1/Gold_21.png" id="1_is02e"]
 [ext_resource type="Script" path="res://scripts/coins.gd" id="1_x2lps"]
@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://csp4xtdll3q4s" path="res://Assets/Itens/Moedas_1/Gold_28.png" id="8_hpaxy"]
 [ext_resource type="Texture2D" uid="uid://b21158fvj6u2m" path="res://Assets/Itens/Moedas_1/Gold_29.png" id="9_sdlpj"]
 [ext_resource type="Texture2D" uid="uid://dhn25qgw52snr" path="res://Assets/Itens/Moedas_1/Gold_30.png" id="10_ao8uj"]
+[ext_resource type="AudioStream" uid="uid://giaws8tmlorj" path="res://sounds/coin_sfx.wav" id="13_y7dhl"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_j7ssf"]
 atlas = ExtResource("2_2ux0p")
@@ -99,6 +100,10 @@ autoplay = "idle"
 
 [node name="collision" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_06v5j")
+
+[node name="coin_sfx" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("13_y7dhl")
+volume_db = -10.0
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="animation_finished" from="anim" to="." method="_on_animated_sprite_2d_animation_finished"]

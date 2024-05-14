@@ -17,6 +17,9 @@ var is_shooting := false
 @onready var remote_transform := $remote as RemoteTransform2D
 @onready var bullet_position = $bullet_position
 @onready var shoot_cooldown = $shoot_cooldown
+@onready var jump_sfx = $jump_sfx as AudioStreamPlayer
+@onready var shot_sfx = $shot_sfx as AudioStreamPlayer
+
 
 
 
@@ -33,12 +36,14 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
 		velocity.y = JUMP_FORCE
 		is_jumping = true
+		jump_sfx.play()
 	elif is_on_floor():
 		is_jumping = false
 		
 		
 	if Input.is_action_pressed("shoot"):
 		is_shooting = true
+		shot_sfx.play()
 		if shoot_cooldown.is_stopped():
 			shoot_bullet()
 	else:

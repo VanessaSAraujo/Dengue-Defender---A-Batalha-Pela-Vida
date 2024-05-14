@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://bjmm8eo1jjxux"]
+[gd_scene load_steps=36 format=3 uid="uid://bjmm8eo1jjxux"]
 
 [ext_resource type="Script" path="res://scripts/world_01.gd" id="1_4l18v"]
 [ext_resource type="Texture2D" uid="uid://b7fgbpmxka8un" path="res://Assets/World/Spritesheet.png" id="1_i8k3e"]
@@ -24,6 +24,7 @@
 [ext_resource type="Shader" path="res://shaders/transition.gdshader" id="22_5i4mh"]
 [ext_resource type="Script" path="res://scripts/transition.gd" id="22_k0x4y"]
 [ext_resource type="Script" path="res://scripts/color_rect.gd" id="23_lcewg"]
+[ext_resource type="AudioStream" uid="uid://d1l0nqxw4jhxx" path="res://sounds/bg_music_BillieJean.mp3" id="25_8gpxi"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_t6quf"]
 texture = ExtResource("1_y2gsy")
@@ -25502,7 +25503,7 @@ position = Vector2(14, 304)
 position = Vector2(16, -39)
 
 [node name="shoot_cooldown" type="Timer" parent="player"]
-wait_time = 0.1
+wait_time = 0.5
 one_shot = true
 
 [node name="camera" type="Camera2D" parent="."]
@@ -25680,5 +25681,10 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
 script = ExtResource("23_lcewg")
+
+[node name="bg_music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("25_8gpxi")
+volume_db = -23.0
+autoplay = true
 
 [connection signal="timeout" from="HUD/control/clock_timer" to="HUD/control" method="_on_clock_timer_timeout"]
