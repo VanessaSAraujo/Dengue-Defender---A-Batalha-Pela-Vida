@@ -12,6 +12,7 @@ var is_hurted := false
 var knockback_vector := Vector2.ZERO
 var direction
 var is_shooting := false
+var is_repelente := false
 
 @onready var animation :=$animation as AnimatedSprite2D
 @onready var remote_transform := $remote as RemoteTransform2D
@@ -24,6 +25,8 @@ var is_shooting := false
 
 
 signal player_has_died()
+
+
 
 
 func _physics_process(delta):
@@ -48,7 +51,14 @@ func _physics_process(delta):
 			shoot_bullet()
 	else:
 		is_shooting = false
-
+		
+	if Input.is_action_just_pressed("repelente"):
+		if Globals.repelente > 0 and Globals.player_life < 3:
+			is_repelente = true
+			Globals.player_life += 1
+			Globals.repelente -= 1
+		
+	
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	direction = Input.get_axis("ui_left", "ui_right")
@@ -123,6 +133,8 @@ func _set_state():
 		state = "shoot"
 	elif is_shooting or direction:
 		state = "run_shoot"
+	elif !direction and is_repelente:
+		state = "repelente"
 	
 	if is_hurted:
 		state = "hurt"
@@ -141,3 +153,8 @@ func shoot_bullet():
 	add_sibling(bullet_instance)
 	bullet_instance.global_position = bullet_position.global_position
 	shoot_cooldown.start()
+
+
+
+func _on_animation_animation_finished():
+	is_repelente = false
