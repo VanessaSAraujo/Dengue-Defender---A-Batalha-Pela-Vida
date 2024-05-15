@@ -1,14 +1,14 @@
 extends Control
 
 @onready var restart_btn = $ColorRect/VBoxContainer/Restart_Btn
-@onready var lose_sfx = $lose_sfx
+@onready var nanana_sfx = $nanana_sfx
 @onready var button_sfx = $button_sfx
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	restart_btn.grab_focus()
-	lose_sfx.play()
+	nanana_sfx.play()
 	
 
 
