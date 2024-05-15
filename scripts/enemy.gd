@@ -5,8 +5,10 @@ const SPEED = 600.0
 
 @onready var wall_detector := $wall_detector as RayCast2D
 @onready var texture := $texture as Sprite2D
-@onready var ground_check = $ground_check
 @onready var anim := $anim as AnimationPlayer
+@onready var limites = $"../../limites"
+
+
 
 #@export var enemy_score := 100
 
@@ -23,16 +25,12 @@ func _physics_process(delta: float) -> void:
 	if wall_detector.is_colliding():
 		direction *= -1
 		wall_detector.scale.x *= -1
-
+	
 	if direction ==1:
 		texture.flip_h = true
 	else:
 		texture.flip_h = false
 		
-	
-	if !ground_check.is_colliding():
-		direction *= -1
-		wall_detector.scale.x *= -1
 
 	velocity.x = direction * SPEED * delta
 
