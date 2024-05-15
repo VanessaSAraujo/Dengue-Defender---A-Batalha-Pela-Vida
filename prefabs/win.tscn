@@ -1,0 +1,164 @@
+[gd_scene load_steps=13 format=3 uid="uid://djkqb4demv50l"]
+
+[ext_resource type="Script" path="res://scripts/game_over.gd" id="1_1trlf"]
+[ext_resource type="Texture2D" uid="uid://dblvp53srl7pf" path="res://Assets/winner/win.png" id="2_4pykc"]
+[ext_resource type="Texture2D" uid="uid://bxrgd54v4h5fi" path="res://Assets/Carro_do_fumacê/1.png" id="2_i4rdf"]
+[ext_resource type="Texture2D" uid="uid://dv1tm6lng5ctp" path="res://Assets/Carro_do_fumacê/2.png" id="3_64h3d"]
+[ext_resource type="Theme" uid="uid://tujvlxy1pskl" path="res://default_bottons.tres" id="3_an5ho"]
+[ext_resource type="AudioStream" uid="uid://du26meeqdi3wr" path="res://sounds/NANANA - LEVEL UP - MICHAEL JACKSON.mp3" id="4_ifyix"]
+[ext_resource type="AudioStream" uid="uid://bi4kihxwrg2o" path="res://sounds/button_sfx.wav" id="5_nucu2"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7ogh8"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_i4rdf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_64h3d")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4aq3x"]
+
+[sub_resource type="Animation" id="Animation_um68s"]
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ColorRect/VBoxContainer:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.9, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_66pqp"]
+resource_name = "fade_in"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ColorRect/VBoxContainer:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.5, 0.9),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2a0ux"]
+_data = {
+"RESET": SubResource("Animation_um68s"),
+"fade_in": SubResource("Animation_66pqp")
+}
+
+[node name="Win" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_1trlf")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.65098, 0.0352941, 0.172549, 1)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="ColorRect"]
+position = Vector2(168.5, 177.5)
+scale = Vector2(0.61, 0.55)
+sprite_frames = SubResource("SpriteFrames_7ogh8")
+autoplay = "default"
+frame_progress = 0.0206456
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ColorRect"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.964
+anchor_top = 0.517
+anchor_right = 0.964
+anchor_bottom = 0.517
+offset_left = -413.76
+offset_top = -137.95
+offset_right = 0.23999
+offset_bottom = 130.05
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="GameOver_Title" type="TextureRect" parent="ColorRect/VBoxContainer"]
+layout_mode = 2
+texture = ExtResource("2_4pykc")
+expand_mode = 5
+
+[node name="HSeparator" type="HSeparator" parent="ColorRect/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxEmpty_4aq3x")
+
+[node name="Restart_Btn" type="Button" parent="ColorRect/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("3_an5ho")
+text = "Restart"
+
+[node name="HSeparator2" type="HSeparator" parent="ColorRect/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxEmpty_4aq3x")
+
+[node name="Quit_Btn" type="Button" parent="ColorRect/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("3_an5ho")
+text = "Quit Game"
+
+[node name="anim" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_2a0ux")
+}
+autoplay = "fade_in"
+
+[node name="nanana_sfx" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_ifyix")
+
+[node name="button_sfx" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_nucu2")
+
+[connection signal="pressed" from="ColorRect/VBoxContainer/Restart_Btn" to="." method="_on_restart_btn_pressed"]
+[connection signal="pressed" from="ColorRect/VBoxContainer/Quit_Btn" to="." method="_on_quit_btn_pressed"]

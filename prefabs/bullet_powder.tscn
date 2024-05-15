@@ -1,0 +1,48 @@
+[gd_scene load_steps=8 format=3 uid="uid://biwlra82y64ao"]
+
+[ext_resource type="Script" path="res://scripts/bullet_powder.gd" id="1_4slcy"]
+[ext_resource type="Texture2D" uid="uid://kina3ngh1cvq" path="res://Assets/player/run-shoot_powder/Player-shoot-hit/player-shoot1.png" id="2_chpuw"]
+[ext_resource type="Texture2D" uid="uid://dluabl64e24fk" path="res://Assets/player/run-shoot_powder/Player-shoot-hit/player-shoot2.png" id="3_y0t7g"]
+[ext_resource type="Texture2D" uid="uid://drkncsccmihga" path="res://Assets/player/run-shoot_powder/Player-shoot-hit/player-shoot3.png" id="4_txt2s"]
+[ext_resource type="Texture2D" uid="uid://doyy2la1d410o" path="res://Assets/player/run-shoot_powder/Player-shoot-hit/player-shoot4.png" id="5_uh4ib"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_13fhh"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_chpuw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_y0t7g")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_txt2s")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_uh4ib")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ihtks"]
+radius = 4.0
+height = 20.0
+
+[node name="bullet_powder" type="Area2D" groups=["bullet_powder"]]
+collision_layer = 128
+collision_mask = 256
+script = ExtResource("1_4slcy")
+
+[node name="anim" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_13fhh")
+autoplay = "default"
+
+[node name="collision" type="CollisionShape2D" parent="."]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_ihtks")
+
+[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]
+
+[connection signal="screen_exited" from="VisibleOnScreenEnabler2D" to="." method="_on_visible_on_screen_enabler_2d_screen_exited"]

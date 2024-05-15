@@ -1,7 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://j2456dijiqc"]
+[gd_scene load_steps=6 format=3 uid="uid://j2456dijiqc"]
 
 [ext_resource type="Script" path="res://scripts/pause_menu.gd" id="1_gb4q1"]
-[ext_resource type="Theme" uid="uid://bo0t0urpjm843" path="res://pause_menu.tres" id="1_hhfsv"]
+[ext_resource type="Theme" uid="uid://tujvlxy1pskl" path="res://default_bottons.tres" id="2_fdan5"]
 
 [sub_resource type="InputEventAction" id="InputEventAction_asnmv"]
 action = &"ui_cancel"
@@ -9,9 +9,10 @@ action = &"ui_cancel"
 [sub_resource type="Shortcut" id="Shortcut_hd6kp"]
 events = [SubResource("InputEventAction_asnmv")]
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_li1jm"]
+
 [node name="pause_menu" type="CanvasLayer"]
 process_mode = 3
-visible = false
 script = ExtResource("1_gb4q1")
 
 [node name="bg_overlay" type="ColorRect" parent="."]
@@ -20,7 +21,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(1, 1, 1, 0.227451)
+color = Color(0, 0, 0, 0.360784)
 
 [node name="menu_holder" type="VBoxContainer" parent="."]
 anchors_preset = 14
@@ -34,14 +35,20 @@ grow_vertical = 2
 
 [node name="resume_btn" type="Button" parent="menu_holder"]
 layout_mode = 2
-theme = ExtResource("1_hhfsv")
+size_flags_horizontal = 4
+theme = ExtResource("2_fdan5")
 shortcut = SubResource("Shortcut_hd6kp")
-text = "RESUME"
+text = "         RESUME         "
+
+[node name="HSeparator" type="HSeparator" parent="menu_holder"]
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxEmpty_li1jm")
 
 [node name="quit_btn" type="Button" parent="menu_holder"]
 layout_mode = 2
-theme = ExtResource("1_hhfsv")
-text = "QUIT GAME"
+size_flags_horizontal = 4
+theme = ExtResource("2_fdan5")
+text = "       QUIT GAME       "
 
 [connection signal="pressed" from="menu_holder/resume_btn" to="." method="_on_resume_btn_pressed"]
 [connection signal="pressed" from="menu_holder/quit_btn" to="." method="_on_quit_btn_pressed"]

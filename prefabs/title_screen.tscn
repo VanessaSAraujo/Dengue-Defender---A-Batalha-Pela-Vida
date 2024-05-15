@@ -1,9 +1,11 @@
-[gd_scene load_steps=11 format=3 uid="uid://v83mrlnko2q7"]
+[gd_scene load_steps=13 format=3 uid="uid://v83mrlnko2q7"]
 
 [ext_resource type="Script" path="res://prefabs/title_screen.gd" id="1_8oleu"]
 [ext_resource type="Texture2D" uid="uid://cj2xwdgg1eee4" path="res://Assets/tela_inicial/title_screen.png" id="2_fpvsq"]
 [ext_resource type="Texture2D" uid="uid://rj3536mpflex" path="res://Assets/tela_inicial/320.png" id="3_p8f4m"]
 [ext_resource type="Theme" uid="uid://tujvlxy1pskl" path="res://default_bottons.tres" id="4_ayhgc"]
+[ext_resource type="AudioStream" uid="uid://bi4kihxwrg2o" path="res://sounds/button_sfx.wav" id="5_cwc5b"]
+[ext_resource type="AudioStream" uid="uid://dlqwlfxvma51u" path="res://sounds/Bad.mp3" id="6_eb2fx"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_q7h7f"]
 
@@ -152,9 +154,9 @@ layout_mode = 2
 theme_override_styles/separator = SubResource("StyleBoxEmpty_q7h7f")
 
 [node name="credits_btn" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer"]
-visible = false
 layout_mode = 2
-text = "CREDITS"
+theme = ExtResource("4_ayhgc")
+text = "GOAL"
 
 [node name="HSeparator2" type="HSeparator" parent="MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
@@ -177,6 +179,14 @@ libraries = {
 "": SubResource("AnimationLibrary_m5bvp")
 }
 autoplay = "review_oficial"
+
+[node name="button_sfx" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_cwc5b")
+
+[node name="bg_title_sfx" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_eb2fx")
+volume_db = -10.167
+autoplay = true
 
 [connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/start_btn" to="." method="_on_start_btn_pressed"]
 [connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/credits_btn" to="." method="_on_credits_btn_pressed"]

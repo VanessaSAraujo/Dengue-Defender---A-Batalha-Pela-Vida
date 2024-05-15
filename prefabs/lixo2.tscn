@@ -1,0 +1,44 @@
+[gd_scene load_steps=7 format=3 uid="uid://5lqgua2ijaq2"]
+
+[ext_resource type="Texture2D" uid="uid://dmme1l5ntgjsu" path="res://Assets/lixo/8.png" id="1_7xtvl"]
+[ext_resource type="Texture2D" uid="uid://13bf8if24cr5" path="res://Assets/efeitos/boom.png" id="2_81bqi"]
+[ext_resource type="PackedScene" uid="uid://hohwejugiebv" path="res://prefabs/hitbox_acoes.tscn" id="3_810lv"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6bdr7"]
+radius = 18.3576
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_vimjs"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cr3wy"]
+size = Vector2(8, 44)
+
+[node name="lixo2" type="CharacterBody2D"]
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-3, -13)
+shape = SubResource("CircleShape2D_6bdr7")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-3.65625, -12.3438)
+scale = Vector2(0.045081, 0.045081)
+texture = ExtResource("1_7xtvl")
+
+[node name="hurt_pneu" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(-8.5, -15)
+scale = Vector2(1.2716, 1.125)
+texture = ExtResource("2_81bqi")
+hframes = 3
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_vimjs")
+}
+
+[node name="hitbox_acoes" parent="." instance=ExtResource("3_810lv")]
+
+[node name="collission_pneu" type="CollisionShape2D" parent="hitbox_acoes"]
+position = Vector2(-5, -14)
+shape = SubResource("RectangleShape2D_cr3wy")
+debug_color = Color(0.689015, 0.303172, 0.979098, 0.42)

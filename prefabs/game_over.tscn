@@ -1,13 +1,14 @@
-[gd_scene load_steps=8 format=3 uid="uid://io4347xqmu63"]
+[gd_scene load_steps=10 format=3 uid="uid://io4347xqmu63"]
 
-[ext_resource type="Texture2D" uid="uid://dhdqpcnx4asuf" path="res://Assets/game_over/game_over.png" id="1_5ccx0"]
 [ext_resource type="Script" path="res://scripts/game_over.gd" id="1_t0c8l"]
 [ext_resource type="Theme" uid="uid://tujvlxy1pskl" path="res://default_bottons.tres" id="2_eblkj"]
+[ext_resource type="Texture2D" uid="uid://dyavqj46t22el" path="res://Assets/game_over/Game_Overr.png" id="2_fkkvv"]
+[ext_resource type="AudioStream" uid="uid://bc3gp4xnx2u2v" path="res://sounds/lose.wav" id="4_wfk0u"]
+[ext_resource type="AudioStream" uid="uid://bi4kihxwrg2o" path="res://sounds/button_sfx.wav" id="5_v3joc"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4aq3x"]
 
 [sub_resource type="Animation" id="Animation_um68s"]
-length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -15,10 +16,10 @@ tracks/0/path = NodePath("ColorRect:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Color(1, 1, 1, 1)]
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -27,10 +28,10 @@ tracks/1/path = NodePath("ColorRect/VBoxContainer:modulate")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0.5, 1),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Color(1, 1, 1, 1)]
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_66pqp"]
@@ -76,6 +77,7 @@ grow_vertical = 2
 script = ExtResource("1_t0c8l")
 
 [node name="ColorRect" type="ColorRect" parent="."]
+modulate = Color(1, 1, 1, 0)
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -85,6 +87,7 @@ grow_vertical = 2
 color = Color(0, 0.0313726, 0.184314, 1)
 
 [node name="VBoxContainer" type="VBoxContainer" parent="ColorRect"]
+modulate = Color(1, 1, 1, 0)
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -100,7 +103,8 @@ grow_vertical = 2
 
 [node name="GameOver_Title" type="TextureRect" parent="ColorRect/VBoxContainer"]
 layout_mode = 2
-texture = ExtResource("1_5ccx0")
+texture = ExtResource("2_fkkvv")
+expand_mode = 5
 
 [node name="HSeparator" type="HSeparator" parent="ColorRect/VBoxContainer"]
 layout_mode = 2
@@ -125,6 +129,12 @@ libraries = {
 "": SubResource("AnimationLibrary_2a0ux")
 }
 autoplay = "fade_in"
+
+[node name="lose_sfx" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_wfk0u")
+
+[node name="button_sfx" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_v3joc")
 
 [connection signal="pressed" from="ColorRect/VBoxContainer/Restart_Btn" to="." method="_on_restart_btn_pressed"]
 [connection signal="pressed" from="ColorRect/VBoxContainer/Quit_Btn" to="." method="_on_quit_btn_pressed"]

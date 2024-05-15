@@ -18,5 +18,3 @@ func set_direction(dir):
 		$anim.set_flip_h(true)
 	else:
 		$anim.set_flip_h(false)
-
-

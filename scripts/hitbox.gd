@@ -15,4 +15,9 @@ func _on_area_entered(area):
 		area.queue_free()
 		Globals.score += enemy_score
 		owner.queue_free()
+	elif area.is_in_group("bullets_fumaca"):
+		area.queue_free()
+		Globals.score += enemy_score
+		owner.queue_free()
+	
 

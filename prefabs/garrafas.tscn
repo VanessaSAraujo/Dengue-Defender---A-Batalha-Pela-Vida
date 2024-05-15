@@ -1,0 +1,44 @@
+[gd_scene load_steps=7 format=3 uid="uid://bdc7j3qkxbj63"]
+
+[ext_resource type="Texture2D" uid="uid://whg072u5w30w" path="res://Assets/garrafa/4.png" id="1_r2dns"]
+[ext_resource type="Texture2D" uid="uid://13bf8if24cr5" path="res://Assets/efeitos/boom.png" id="2_a0rgm"]
+[ext_resource type="PackedScene" uid="uid://hohwejugiebv" path="res://prefabs/hitbox_acoes.tscn" id="3_e7440"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6bdr7"]
+radius = 18.3576
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_vimjs"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cr3wy"]
+size = Vector2(8, 42)
+
+[node name="garrafas" type="CharacterBody2D"]
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-3, -13)
+shape = SubResource("CircleShape2D_6bdr7")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-3.56249, -20.4375)
+scale = Vector2(0.0526621, 0.0526621)
+texture = ExtResource("1_r2dns")
+
+[node name="hurt_pneu" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(-8.5, -15)
+scale = Vector2(1.2716, 1.125)
+texture = ExtResource("2_a0rgm")
+hframes = 3
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_vimjs")
+}
+
+[node name="hitbox_acoes" parent="." instance=ExtResource("3_e7440")]
+
+[node name="collission_pneu" type="CollisionShape2D" parent="hitbox_acoes"]
+position = Vector2(-5, -13)
+shape = SubResource("RectangleShape2D_cr3wy")
+debug_color = Color(0.689015, 0.303172, 0.979098, 0.42)

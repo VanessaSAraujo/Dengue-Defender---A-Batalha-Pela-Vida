@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cd7qcx6akavle"
+path="res://.godot/imported/COMPLETO EFEITO SONORO - MICHAEL JACKSON.mp3-facc60060be9db83e0f82835445700b6.mp3str"
+
+[deps]
+
+source_file="res://sounds/COMPLETO EFEITO SONORO - MICHAEL JACKSON.mp3"
+dest_files=["res://.godot/imported/COMPLETO EFEITO SONORO - MICHAEL JACKSON.mp3-facc60060be9db83e0f82835445700b6.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

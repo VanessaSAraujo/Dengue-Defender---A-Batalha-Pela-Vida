@@ -6,7 +6,9 @@ const SPEED = 600.0
 @onready var wall_detector := $wall_detector as RayCast2D
 @onready var texture := $texture as Sprite2D
 @onready var anim := $anim as AnimationPlayer
-@onready var limites = $"../../limites"
+
+
+
 
 
 
@@ -25,6 +27,7 @@ func _physics_process(delta: float) -> void:
 	if wall_detector.is_colliding():
 		direction *= -1
 		wall_detector.scale.x *= -1
+	
 	
 	if direction ==1:
 		texture.flip_h = true

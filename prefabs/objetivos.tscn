@@ -1,0 +1,119 @@
+[gd_scene load_steps=9 format=3 uid="uid://bjekklopgpr8u"]
+
+[ext_resource type="Script" path="res://scripts/objetivos.gd" id="1_f6tpg"]
+[ext_resource type="Theme" uid="uid://tujvlxy1pskl" path="res://default_bottons.tres" id="3_2mqms"]
+[ext_resource type="FontFile" uid="uid://dse8tt84yv0df" path="res://Assets/fonts/DePixelBreit.otf" id="3_rwt4i"]
+[ext_resource type="AudioStream" uid="uid://d1l0nqxw4jhxx" path="res://sounds/bg_music_BillieJean.mp3" id="4_7mi0p"]
+[ext_resource type="AudioStream" uid="uid://bi4kihxwrg2o" path="res://sounds/button_sfx.wav" id="5_2f43r"]
+
+[sub_resource type="Animation" id="Animation_um68s"]
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_66pqp"]
+resource_name = "fade_in"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2a0ux"]
+_data = {
+"RESET": SubResource("Animation_um68s"),
+"fade_in": SubResource("Animation_66pqp")
+}
+
+[node name="objetivo" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_f6tpg")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0.0352941, 0.172549, 1)
+
+[node name="Restart_Btn" type="Button" parent="ColorRect"]
+layout_mode = 2
+offset_left = -1.0
+offset_top = 315.0
+offset_right = 840.0
+offset_bottom = 334.0
+size_flags_vertical = 8
+theme = ExtResource("3_2mqms")
+text = "BACK"
+
+[node name="Label" type="Label" parent="ColorRect"]
+layout_mode = 0
+offset_left = 56.0
+offset_top = 13.0
+offset_right = 817.0
+offset_bottom = 293.0
+theme_override_fonts/font = ExtResource("3_rwt4i")
+theme_override_font_sizes/font_size = 10
+text = "
+O objetivo do jogo é que você, jogador, elimine focos do inimigo, além de eliminar o inimigo!
+
+Para isso utilize as seguites teclas:
+
+SPACE - para pular
+
+SETAS - para andar e selecionar botões
+
+Q - Interagir com placas 
+
+W - para avançar mensagens 
+
+E - para atirar inseticida 
+
+R - para usar repelente e recuperar 1 vida 
+
+A - para soltar o pó dos agentes de saúde (que todo mundo gostaria de saber o que é)  
+
+S - para usar o fumacê portátil
+
+"
+horizontal_alignment = 1
+
+[node name="anim" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_2a0ux")
+}
+autoplay = "fade_in"
+
+[node name="nanana_sfx" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_7mi0p")
+volume_db = -21.945
+
+[node name="button_sfx" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_2f43r")
+
+[connection signal="pressed" from="ColorRect/Restart_Btn" to="." method="_on_restart_btn_pressed"]
